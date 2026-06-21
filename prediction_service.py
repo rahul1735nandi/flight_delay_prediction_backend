@@ -1,10 +1,10 @@
 import pandas as pd
 
-from model_loader import prediction_features
+from model_loader import feature_columns
 
 def prepare_input_data(origin, dest, airline, month, day_of_week, distance, crs_dep_time):
     input_df = pd.DataFrame(
-        columns=prediction_features
+        columns=feature_columns
     )
 
     input_df.loc[0] = 0
@@ -18,13 +18,13 @@ def prepare_input_data(origin, dest, airline, month, day_of_week, distance, crs_
     carrier_column = f'op_unique_carrier_{airline}'
 
     if origin_column not in input_df.columns:
-        raise ValueError(f"Unknwon origin airport: {origin}")
+        raise ValueError(f"Unknown origin airport: {origin}")
 
     if dest_column not in input_df.columns:
-        raise ValueError(f"Unknwon destination airport: {dest}")
+        raise ValueError(f"Unknown destination airport: {dest}")
 
     if carrier_column not in input_df.columns:
-        raise ValueError(f"Unknwon airline: {airline}")
+        raise ValueError(f"Unknown airline: {airline}")
     
     input_df.at[0, origin_column] = 1
     input_df.at[0, dest_column] = 1
