@@ -36,7 +36,7 @@ def predict(request: FlightRequest):
 
     delay_probability = (model.predict_proba(input_df)[0][1])
 
-    is_delayed = (1 if delay_probability >= MODEL_THRESHOLD else 0)
+    is_delayed = (True if delay_probability >= MODEL_THRESHOLD else False)
 
     return {
         "is_delayed": is_delayed,
