@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 
 from request_model import FlightRequest
 from model_loader import model, MODEL_THRESHOLD
@@ -7,14 +6,6 @@ from prediction_service import prepare_input_data
 from response_model import PredictionResponse
 
 app = FastAPI()
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 @app.get("/")
 def home():
